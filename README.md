@@ -1,1 +1,1 @@
-# Lekce-6
+# czechitas-lesson3
