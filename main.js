@@ -1,54 +1,49 @@
 // tady je místo pro náš program
 
-/*
-// Cvičení - knihovny
-// E-mail a číslo karty
-const email = prompt("Zadejte svou e-mailovou adresu")
 
-const isEmail = validator.isEmail(email)
-const messageElement = document.querySelector('#msg')
+// Parsování data
 
-if (isEmail) {
-	messageElement.textContent = 'E-mail v pořádku'
-	messageElement.classList.add('msg--valid')
-} else {
-	messageElement.textContent = 'Neplatný e-mail'
-	messageElement.classList.add('msg--invalid')
+const parseDate = (vstupDatum) => {
+    return {
+    day: Number(vstupDatum.slice(0,2)),
+    month: Number(vstupDatum.slice(3,5)),
+    year: Number(vstupDatum.slice(6)),
+    }
 }
 
-const karta = prompt ("Zadejte číslo karty")
+console.log(parseDate("01.03.2023"))
 
-const isCreditCard = validator.isCreditCard(karta)
-const messageElement2 = document.querySelector('#num')
+// Formátování data
+const formatDate = ({ day, month, year }) => {
 
-if(isCreditCard){
-    messageElement2.textContent = "Číslo karty je v pořádku."
-    messageElement2.classList.add("msg--valid")
-} else {
-    messageElement2.textContent = "Číslo karty je neplatné."
-    messageElement2.classList.add("msg--invalid")
-}
-*/
+    const datum = {
+        formatDay: String(day).padStart(2, '0'),
+        formatMonth: String(month).padStart(2, '0'),
+        formatYear: String(year),
+    }
 
-// Mimozemský život
-const narozeniny = dayjs("YYYY-09-23")
-const now = dayjs()
+    const { formatDay, formatMonth, formatYear } = datum;
 
-if (now.isAfter(narozeniny)) {
-    alert("Promeškal jsi Pájiny narozeniny.")
-} else {
-    alert ("Jupí, Pájiny narozeniny se blíží!")
+    return formatDay + "." + formatMonth + "." + formatYear;
 }
 
+console.log(formatDate({ day: 2, month: 3, year: 2023 }))
 
-/*
-// poznámky z hodiny - Štědrý den
-const stedryDen = dayjs("2022-12-24")
-const now = dayjs()
-
-if (now.isAfter(stedryDen)) {
-    alert("Bohužel jsi Vánoce promeškal/a.")
-} else {
-        alert("Jupí, Vánoce jsou za rohem :)!")
+// Python zaokrouhlování
+const round = (cislo) => {
+	const vetsiCast = Math.trunc(cislo)
+	const mensiCast = cislo - vetsiCast
+	if (Math.abs(mensiCast) === 0.5) {
+		if (vetsiCast % 2 === 0) {
+			return vetsiCast
+		} else {
+			return vetsiCast + 2 * mensiCast
+		}
+	}
+	return Math.round(cislo)
 }
-*/
+
+console.log("Zaokrouhli číslo 1.4: ", round(1.4))
+console.log("Zaokrouhli číslo 1.6: ", round(1.6))
+console.log("Zaokrouhli číslo 3.5: ", round(3.5))
+console.log("Zaokrouhli číslo 2.5: ", round(2.5))
